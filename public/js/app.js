@@ -5076,7 +5076,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: "Index"
+  name: "Index",
+  methods: {
+    logout: function logout() {
+      var _this = this;
+      axios.post('/logout').then(function (response) {
+        _this.$router.push({
+          name: 'user.login'
+        });
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -5116,7 +5126,17 @@ var render = function render() {
         name: "user.registration"
       }
     }
-  }, [_vm._v("Registration")]), _vm._v(" "), _c("router-view")], 1);
+  }, [_vm._v("Registration")]), _vm._v(" "), _c("a", {
+    attrs: {
+      href: "#"
+    },
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.logout.apply(null, arguments);
+      }
+    }
+  }, [_vm._v("Logout")]), _vm._v(" "), _c("router-view")], 1);
 };
 var staticRenderFns = [];
 render._withStripped = true;
