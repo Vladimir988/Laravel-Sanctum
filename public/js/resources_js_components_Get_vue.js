@@ -12,7 +12,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: "Get"
+  name: "Get",
+  methods: {
+    getData: function getData() {
+      axios.get('/api/get').then(function (response) {
+        console.log(response);
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.getData();
+  }
 });
 
 /***/ }),

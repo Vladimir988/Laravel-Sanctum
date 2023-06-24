@@ -12,7 +12,33 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: "Login"
+  name: "Login",
+  data: function data() {
+    return {
+      email: null,
+      password: null,
+      error: null
+    };
+  },
+  methods: {
+    login: function login() {
+      var _this = this;
+      axios.get('/sanctum/csrf-cookie').then(function (response) {
+        axios.post('/login', {
+          email: _this.email,
+          password: _this.password
+        }).then(function (response) {
+          console.log(response);
+          // if(response.status === 200) {
+          //     this.setCookie('access_token', response.data.access_token, 1);
+          //     this.$router.push({name: 'users.personal'});
+          // }
+        })["catch"](function (error) {
+          _this.error = error.response.data.message;
+        });
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -31,7 +57,64 @@ __webpack_require__.r(__webpack_exports__);
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("div", [_vm._v("\n    Login\n")]);
+  return _c("div", {
+    staticClass: "mt-3"
+  }, [_c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.email,
+      expression: "email"
+    }],
+    staticClass: "form-control mb-3",
+    attrs: {
+      type: "email",
+      placeholder: "Email"
+    },
+    domProps: {
+      value: _vm.email
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.email = $event.target.value;
+      }
+    }
+  }), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.password,
+      expression: "password"
+    }],
+    staticClass: "form-control mb-3",
+    attrs: {
+      type: "password",
+      placeholder: "Password"
+    },
+    domProps: {
+      value: _vm.password
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.password = $event.target.value;
+      }
+    }
+  }), _vm._v(" "), _vm.error ? _c("div", {
+    staticClass: "text-danger mb-3"
+  }, [_vm._v(_vm._s(_vm.error))]) : _vm._e(), _vm._v(" "), _c("input", {
+    staticClass: "btn btn-outline-success",
+    attrs: {
+      type: "submit"
+    },
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.login.apply(null, arguments);
+      }
+    }
+  })]);
 };
 var staticRenderFns = [];
 render._withStripped = true;
