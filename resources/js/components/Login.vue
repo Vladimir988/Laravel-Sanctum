@@ -25,10 +25,6 @@ export default {
                     password: this.password
                 }).then(response => {
                     console.log(response);
-                    // if(response.status === 200) {
-                    //     this.setCookie('access_token', response.data.access_token, 1);
-                    //     this.$router.push({name: 'users.personal'});
-                    // }
                 }).catch(error => {
                     this.error = error.response.data.message;
                 });

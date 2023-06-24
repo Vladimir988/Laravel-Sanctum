@@ -29,10 +29,6 @@ __webpack_require__.r(__webpack_exports__);
           password: _this.password
         }).then(function (response) {
           console.log(response);
-          // if(response.status === 200) {
-          //     this.setCookie('access_token', response.data.access_token, 1);
-          //     this.$router.push({name: 'users.personal'});
-          // }
         })["catch"](function (error) {
           _this.error = error.response.data.message;
         });
