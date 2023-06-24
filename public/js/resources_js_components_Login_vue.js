@@ -28,7 +28,10 @@ __webpack_require__.r(__webpack_exports__);
           email: _this.email,
           password: _this.password
         }).then(function (response) {
-          console.log(response);
+          localStorage.setItem('x_xsrf_token', response.config.headers['X-XSRF-TOKEN']);
+          _this.$router.push({
+            name: 'user.personal'
+          });
         })["catch"](function (error) {
           _this.error = error.response.data.message;
         });
